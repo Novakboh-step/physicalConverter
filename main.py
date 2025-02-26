@@ -22,6 +22,18 @@ def convert():
     number *= con.convert(unit1, unit2)
     result["text"] = number
 
+def nightTheme():
+    root.config(bg="black")
+    result.config(bg="black", fg="white")
+    button.config(bg="black", fg="white")
+    theme.config(bg="black", fg="white", text="Day theme", command=dayTheme)
+
+def dayTheme():
+    root.config(bg="lightgrey")
+    result.config(bg="lightgrey", fg="black")
+    button.config(bg="lightgrey", fg="black")
+    theme.config(bg="lightgrey", fg="black", text="Night theme", command=nightTheme)
+
 units = {
     "Distance": ["km", "m", "dm", "cm", "mm", "ml", "ft"],
     "Mass": ["t", "kg", "g", "mg", "lb", "oz"],
@@ -40,7 +52,9 @@ units2 = ttk.Combobox(width=10)
 units2.grid(row=2, column=1, padx=5, pady=5)
 result = Label(text="...............")
 result.grid(row=2, column=0, padx=5, pady=5)
-button = Button(text="convert", width=30, command=convert)
+button = Button(text="Convert", width=30, command=convert)
 button.grid(row=3, column=0, columnspan=2, padx=10, pady=10)
+theme = Button(text="Night theme", width=30, command=nightTheme)
+theme.grid(row=4, column=0, columnspan=2, padx=10, pady=10)
 converters.bind("<<ComboboxSelected>>", changeUnits)
 root.mainloop()
